@@ -1,0 +1,25 @@
+{
+  "name": "br_book_bot",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon index.js --exec babel-node --presets babel-preset-env --plugins babel-plugin-transform-object-rest-spread"
+  },
+  "author": "Makhmudjon Inadullaev",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "telegraf": "^3.38.0",
+    "telegraf-session-redis": "^5.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.21.2",
+    "nodemon": "^2.0.4"
+  }
+}
