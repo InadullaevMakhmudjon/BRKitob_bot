@@ -9,23 +9,29 @@ import productGift from '../hears/giftProduct';
 const hostname = process.env.SERVER_HOST;
 const port = process.env.SERVER_PORT;
 
+function makeHeares(bot, data, callBack) {
+  data.forEach(({ title_kr, title_ru }) => {
+    bot.on('text', lazy(() => hears(title_kr, callBack)));
+    bot.on('text', lazy(() => hears(title_ru, callBack)));
+  });
+}
+
+function makeData(bot, allBooks, allGifts) {
+  const books = bot.data && bot.data.allBooks && bot.data.allBooks.map(({ id }) => id);
+  const gifts = bot.data && bot.data.allGifts && bot.data.allGifts.map(({ id }) => id);
+  const bookData = books ? allBooks.filter(({ id }) => !books.includes(id)) : allBooks;
+  const giftData = gifts ? allGifts.filter(({ id }) => !gifts.includes(id)) : allGifts;
+  return [bookData, giftData];
+}
+
 const refreshData = (bot) => new Promise((res, rej) => {
   Promise.all([
     Book.getAll(),
     Gift.getAll(),
   ]).then(([allBooks, allGifts]) => {
-    const books = bot.data && bot.data.allBooks && bot.data.allBooks.map(({ id }) => id);
-    const gifts = bot.data && bot.data.allGifts && bot.data.allGifts.map(({ id }) => id);
-    const bookData = books ? allBooks.filter(({ id }) => !books.includes(id)) : allBooks;
-    const giftData = gifts ? allGifts.filter(({ id }) => !gifts.includes(id)) : allGifts;
-    bookData.forEach(({ title_kr, title_ru }) => {
-      bot.on('text', lazy(() => hears(title_kr, product)));
-      bot.on('text', lazy(() => hears(title_ru, product)));
-    });
-    giftData.forEach(({ title_kr, title_ru }) => {
-      bot.on('text', lazy(() => hears(title_kr, productGift)));
-      bot.on('text', lazy(() => hears(title_ru, productGift)));
-    });
+    const [bookData, giftData] = makeData(bot, allBooks, allGifts);
+    makeHeares(bot, bookData, product);
+    makeHeares(bot, giftData, productGift);
     res({ allBooks, allGifts });
   }).catch(rej);
 });
