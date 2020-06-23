@@ -6,6 +6,8 @@ import Gift from '../service/gifts';
 import product from '../hears/product';
 import productGift from '../hears/giftProduct';
 
+require('dotenv').config();
+
 const hostname = process.env.SERVER_HOST;
 const port = process.env.SERVER_PORT;
 
