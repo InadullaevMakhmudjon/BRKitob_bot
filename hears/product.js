@@ -18,7 +18,7 @@ export default async (ctx, next) => {
     media: url,
   }));
   if (images.length) await ctx.replyWithMediaGroup(images);
-  await ctx.reply(`${book[`description_${ctx.session.lang}`]}\n${ctx.t('price')}: ${book.price}`, Markup.keyboard(buttons).resize().extra());
+  await ctx.reply(`${book[`description_${ctx.session.lang}`]}\n${ctx.t('price')}: ${book.price} UZS`, Markup.keyboard(buttons).resize().extra());
   await ctx.telegram.deleteMessage(chatId, message_id);
   // For back event
   ctx.trace(books);
