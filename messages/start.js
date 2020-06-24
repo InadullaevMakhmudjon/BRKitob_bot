@@ -1,6 +1,6 @@
 export default (username) => `
 Aссалому алайкум!!
-Здравствуйте, <b>${username}</b>
-🇺🇿 Тилини танлаш учун
-🇷🇺 Выберите язык
+Assalomu aleykum, <b>${username}</b>
+🇺🇿 Тилни танланг
+🇺🇿 Tilni tanlang
 `;

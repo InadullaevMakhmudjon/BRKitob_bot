@@ -1,8 +1,8 @@
 import main from './main';
 
 const getLang = (match) => {
-  if (match.includes('🇺🇿 ')) return 'kr';
-  if (match.includes('🇷🇺 ')) return 'ru';
+  if (match.includes('Русский')) return 'kr';
+  if (match.includes('O\'zbekcha')) return 'lat';
   return 'kr';
 };
 

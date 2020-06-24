@@ -12,9 +12,9 @@ const hostname = process.env.SERVER_HOST;
 const port = process.env.SERVER_PORT;
 
 function makeHeares(bot, data, callBack) {
-  data.forEach(({ title_kr, title_ru }) => {
+  data.forEach(({ title_kr, title_lat }) => {
     bot.on('text', lazy(() => hears(title_kr, callBack)));
-    bot.on('text', lazy(() => hears(title_ru, callBack)));
+    bot.on('text', lazy(() => hears(title_lat, callBack)));
   });
 }
 

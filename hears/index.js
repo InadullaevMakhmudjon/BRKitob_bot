@@ -11,7 +11,7 @@ import gifts from './gifts';
 
 export default (customHears) => {
   // Language selected
-  customHears(['🇺🇿 Ўзбекча', '🇷🇺 Русский'], async (ctx, next) => {
+  customHears(['🇺🇿 Ўзбекча', '🇺🇿 O\'zbekcha'], async (ctx, next) => {
     ctx.session.shopping = null;
     locale(ctx, next);
   });
