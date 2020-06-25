@@ -1,4 +1,4 @@
-import Markup from 'telegraf/markup';
+import countKeyboard from '../keyboards/count';
 import Book from '../service/books';
 import generator from '../keyboards/generator';
 import keyboards from '../keyboards';
@@ -18,7 +18,10 @@ export default async (ctx, next) => {
     media: url,
   }));
   if (images.length) await ctx.replyWithMediaGroup(images);
-  await ctx.reply(`${book[`description_${ctx.session.lang}`]}\n${ctx.t('price')}: ${book.price} UZS`, Markup.keyboard(buttons).resize().extra());
+  await ctx.reply(
+    `${book[`description_${ctx.session.lang}`]}\n${ctx.t('price')}: ${book.price} UZS`,
+    countKeyboard(1, ctx, next),
+  );
   await ctx.telegram.deleteMessage(chatId, message_id);
   // For back event
   ctx.trace(books);

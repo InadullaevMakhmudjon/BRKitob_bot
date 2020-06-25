@@ -1,6 +1,7 @@
 import Telegraf from 'telegraf';
 import RedisSession from 'telegraf-session-redis';
 import { lazy, hears as lazyHears } from 'telegraf/composer';
+import actions from './actions';
 import commands from './commands';
 import hears from './hears';
 import customHears, { translate } from './utils/match';
@@ -28,6 +29,7 @@ bot.use(async (ctx, next) => {
   next();
 });
 
+actions(bot);
 commands(bot);
 hears(
   (key, callBack) => customHears(key, bot, callBack),
