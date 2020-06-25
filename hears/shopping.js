@@ -10,7 +10,7 @@ export default async (ctx, next) => {
       .map((product) => `❌ ${product[`title_${ctx.session.lang}`]} (${product.quantity}${ctx.t('unit')})`);
     buttons = keyboards.order(ctx, names);
   }
-  await ctx.reply(ctx.t('shopping'), Markup.keyboard(buttons).resize().extra());
+  await ctx.reply(ctx.t('shopping'), Markup.keyboard(buttons).oneTime().resize().extra());
 
   // For back event
   ctx.trace(books);
