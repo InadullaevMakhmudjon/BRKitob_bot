@@ -29,6 +29,10 @@ bot.use(async (ctx, next) => {
   next();
 });
 
+// bot.command('photo', (ctx) => {
+// ctx.replyWithPhoto({ url: 'https://picsum.photos/200/300/' }, { caption: '<strong>hello</strong>', parse_mode: 'HTML' });
+// });
+
 actions(bot);
 commands(bot);
 hears(

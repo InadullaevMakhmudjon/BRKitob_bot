@@ -20,6 +20,6 @@ const isAddedButton = (ctx) => [
 
 const counterKeyboard = (value = 1, ctx) => Markup.inlineKeyboard(
   buttons(value, ctx),
-).extra();
+).extra({ parse_mode: 'HTML' });
 
 export { counterKeyboard as default, buttons, isAddedButton };
