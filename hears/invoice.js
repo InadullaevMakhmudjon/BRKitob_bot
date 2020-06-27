@@ -1,4 +1,4 @@
-const token = '387026696:LIVE:5eeb4e0e5b9c7f8d29bdab75';
+const token = process.env.PAYMENT_TOKEN;
 
 // for delivery, get by own
 const withoutAddress = (prices) => ({

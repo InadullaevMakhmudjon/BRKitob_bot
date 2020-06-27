@@ -11,7 +11,7 @@ export default async (ctx, next) => {
   await ctx.replyWithPhoto({
     url: gift.image,
   }, {
-    caption: `${gift[`description_${ctx.session.lang}`]}\n${ctx.t('price')}: ${gift.bonus} bonus`,
+    caption: `${gift[`description_${ctx.session.lang}`]}\n${ctx.t('price')}: ${gift.point} points`,
     parse_mode: 'Markdown',
     reply_markup: {
       keyboard: [keyboards.back(ctx)],
