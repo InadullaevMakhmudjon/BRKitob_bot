@@ -19,7 +19,12 @@ export default (bot) => {
         if (!ctx.session.shopping) {
           ctx.session.shopping = [];
         }
-        ctx.session.shopping.push(product);
+        const found = ctx.session.shopping.findIndex(({ id }) => id == product.id);
+        if (found !== -1) {
+          ctx.session.shopping[found].quantity += +product.quantity;
+        } else {
+          ctx.session.shopping.push(product);
+        }
         ctx.session.book = null;
         await ctx.telegram.deleteMessage(ctx.from.id, ctx.callbackQuery.message.message_id);
         books(ctx, next);
