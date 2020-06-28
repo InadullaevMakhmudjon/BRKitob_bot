@@ -5,6 +5,7 @@ import keyboards from '../keyboards';
 import { numbers } from '../utils';
 import books from './books';
 import { LOADING } from '../utils/stickers';
+import bookCaption from '../messages/caption';
 
 // Store back, To Books
 export default async (ctx, next) => {
@@ -17,12 +18,11 @@ export default async (ctx, next) => {
     type: 'photo',
     media: url,
   }));
+
   if (images.length) await ctx.replyWithMediaGroup(images);
-  await ctx.reply(
-    `${book[`description_${ctx.session.lang}`]}\n${ctx.t('price')}: ${book.price} UZS`,
-    countKeyboard(1, ctx, next),
-  );
+  await ctx.reply(bookCaption(book, ctx), countKeyboard(1, ctx, next));
   await ctx.telegram.deleteMessage(chatId, message_id);
+
   // For back event
   ctx.trace(books);
   next();

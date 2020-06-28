@@ -2,6 +2,7 @@ import Gift from '../service/gifts';
 import keyboards from '../keyboards';
 import gifts from './gifts';
 import { LOADING } from '../utils/stickers';
+import { giftCaption } from '../messages/caption';
 
 // Store back, To Books
 export default async (ctx, next) => {
@@ -11,8 +12,8 @@ export default async (ctx, next) => {
   await ctx.replyWithPhoto({
     url: gift.image,
   }, {
-    caption: `${gift[`description_${ctx.session.lang}`]}\n${ctx.t('price')}: ${gift.point} points`,
-    parse_mode: 'Markdown',
+    caption: giftCaption(gift, ctx),
+    parse_mode: 'HTML',
     reply_markup: {
       keyboard: [keyboards.back(ctx)],
       resize_keyboard: true,
