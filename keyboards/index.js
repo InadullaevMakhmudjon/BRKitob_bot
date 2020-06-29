@@ -3,6 +3,7 @@ import main, { basket, back, generate } from './main';
 import categories from './categories';
 import generator from './generator';
 import delivery from './delivery';
+import contact from './contact';
 
 export const count = (ctx) => (ctx.session.shopping
   ? `(${ctx.session.shopping.reduce((a, b) => a + Number(b.quantity), 0)})`
@@ -18,4 +19,5 @@ export default {
   delivery: (ctx, type) => delivery(ctx, type),
   dilemma: (ctx) => generate([ctx.t('agreementReject'), ctx.t('agreementAccept')])[0],
   categories: (text) => [categories(text)],
+  contact: (ctx) => contact(ctx),
 };

@@ -1,7 +1,19 @@
 import form from './form';
+import main from '../hears/main';
+import users from '../service/users';
 
-export default (ctx, next) => {
+export default async (ctx, next) => {
   const { contact } = ctx.update.message;
+  const { phone_number } = contact;
+  const user = { ...ctx.from, phone_number };
+  ctx.session = {};
+  ctx.session.user = await users.create(user);
+  // if (user) {
+  //   ctx.session.user = user;
+  // } else {
+  //   ctx.session.user = ctx.from;
+  // }
   ctx.session.contact = contact;
-  form(ctx, next, !!ctx.session.type);
+  main(ctx, next);
+  // form(ctx, next, !!ctx.session.type);
 };
