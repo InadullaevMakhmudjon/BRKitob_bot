@@ -9,6 +9,7 @@ import delivery from './delivery';
 import dilemma from './dilemma';
 import gifts from './gifts';
 import profile from './profile';
+import form from '../listeners/form';
 
 export default (customHears) => {
   // Language selected
@@ -35,4 +36,5 @@ export default (customHears) => {
 
   customHears((text) => `${text}`.includes('❌'), deleteProduct);
   customHears('back', (ctx, next) => { ctx.back(ctx, next); });
+  customHears('skip', (ctx, next) => form(ctx, next, 1));
 };
