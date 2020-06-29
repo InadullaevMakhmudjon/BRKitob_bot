@@ -6,7 +6,7 @@ export default (ctx, next, type) => {
   const message = aggrement(
     ctx,
     `${ctx.session.user.first_name} ${ctx.session.user.last_name}`,
-    `${ctx.session.contact.phone_number}`,
+    `${ctx.session.user.phone_number}`,
     type ? ctx.t('typeCourier') : ctx.t('typePickUp'),
     ctx.session.shopping,
   );
