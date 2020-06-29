@@ -6,7 +6,7 @@ export default (ctx, next) => {
   const buttons = keyboards.categories({
     gifts: ctx.t('gifts'),
     books: ctx.t('books'),
-    bonuses: ctx.t('bonuses'),
+    profile: ctx.t('myProfile'),
   });
   ctx.reply(ctx.t('chooseCategory'), Markup.keyboard(buttons).resize().extra());
   next();

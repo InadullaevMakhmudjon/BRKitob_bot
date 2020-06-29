@@ -8,6 +8,7 @@ import order from './order';
 import delivery from './delivery';
 import dilemma from './dilemma';
 import gifts from './gifts';
+import profile from './profile';
 
 export default (customHears) => {
   // Language selected
@@ -19,7 +20,7 @@ export default (customHears) => {
   // Main
   customHears('books', books);
   customHears('gifts', gifts);
-  customHears('bonuses', (ctx) => { ctx.reply('Coming soon'); });
+  customHears('myProfile', profile);
 
   // Books
   customHears('clear', clear);
