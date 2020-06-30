@@ -1,5 +1,19 @@
-import profileMessage from '../messages/profile';
+import Markup from 'telegraf/markup';
+import main from './main';
 
-export default (ctx) => {
-  ctx.replyWithHTML(profileMessage(ctx));
+export default (ctx, next) => {
+  const buttons = [
+    [
+      ctx.t('affordableGifts'),
+      ctx.t('myProfile'),
+    ], [
+      ctx.t('back'),
+    ],
+  ];
+
+  ctx.reply(ctx.t('chooseCategory'), Markup.keyboard(buttons).resize().extra());
+
+  // For back event
+  ctx.trace(main);
+  next();
 };
