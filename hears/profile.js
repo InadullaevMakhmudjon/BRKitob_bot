@@ -11,7 +11,7 @@ export default (ctx, next) => {
     ],
   ];
 
-  ctx.reply(ctx.t('chooseCategory'), Markup.keyboard(buttons).resize().extra());
+  ctx.reply(ctx.t('choose'), Markup.keyboard(buttons).resize().extra());
 
   // For back event
   ctx.trace(main);
