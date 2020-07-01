@@ -8,11 +8,6 @@ export default async (ctx, next) => {
   const user = { ...ctx.from, phone_number };
   ctx.session = {};
   ctx.session.user = await users.create(user);
-  // if (user) {
-  //   ctx.session.user = user;
-  // } else {
-  //   ctx.session.user = ctx.from;
-  // }
   ctx.session.contact = contact;
   main(ctx, next);
   // form(ctx, next, !!ctx.session.type);
