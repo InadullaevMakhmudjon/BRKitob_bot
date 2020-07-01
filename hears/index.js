@@ -8,8 +8,10 @@ import order from './order';
 import delivery from './delivery';
 import dilemma from './dilemma';
 import gifts from './gifts';
-import profile from './profile';
+import myProfile from './myProfile';
+import affordableGifts from './affordableGifts';
 import form from '../listeners/form';
+import profile from './profile';
 
 export default (customHears) => {
   // Language selected
@@ -21,7 +23,11 @@ export default (customHears) => {
   // Main
   customHears('books', books);
   customHears('gifts', gifts);
-  customHears('myProfile', profile);
+  customHears('profile', profile);
+
+  // Profile
+  customHears('myProfile', myProfile);
+  customHears('affordableGifts', affordableGifts);
 
   // Books
   customHears('clear', clear);
