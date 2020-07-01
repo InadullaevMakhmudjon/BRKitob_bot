@@ -4,6 +4,7 @@ import categories from './categories';
 import generator from './generator';
 import delivery from './delivery';
 import contact from './contact';
+import paymentTypes from './payment-types';
 
 export const count = (ctx) => (ctx.session.shopping
   ? `(${ctx.session.shopping.reduce((a, b) => a + Number(b.quantity), 0)})`
@@ -11,6 +12,7 @@ export const count = (ctx) => (ctx.session.shopping
 
 export default {
   start,
+  paymentTypes,
   basket: (ctx, text) => [basket(text || ctx.t('shopping'), count(ctx))],
   back: (ctx, text) => [back(text || ctx.t('back'))],
   main: (ctx) => main(ctx.t('shopping'), ctx.t('back'), count(ctx)),

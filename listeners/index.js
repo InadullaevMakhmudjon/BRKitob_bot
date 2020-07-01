@@ -8,5 +8,5 @@ export default (bot) => {
   bot.on('contact', contact);
   bot.on('location', location);
   bot.on('pre_checkout_query', (ctx) => { ctx.answerPreCheckoutQuery(true); });
-  bot.on('successful_payment', payed);
+  bot.on('successful_payment', () => { /** Payed Success */ });
 };

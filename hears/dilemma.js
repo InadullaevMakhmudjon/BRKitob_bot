@@ -1,9 +1,9 @@
 import main from './main';
-import invoice from './invoice';
+import keyboards from '../keyboards';
 
 export default (ctx, next, type) => {
   if (type) {
-    invoice(ctx, ctx.session.shopping);
+    ctx.reply('Choose payment type', keyboards.paymentTypes.extra());
   } else {
     main(ctx, next);
   }
