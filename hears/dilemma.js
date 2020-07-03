@@ -1,9 +1,11 @@
 import main from './main';
 import keyboards from '../keyboards';
 
-export default (ctx, next, type) => {
+export default async (ctx, next, type) => {
   if (type) {
-    ctx.reply('Choose payment type', keyboards.paymentTypes.extra());
+    const { message_id } = await ctx.reply('Choose payment type', keyboards.paymentTypes.extra());
+    ctx.session.message_id = message_id;
+    next();
   } else {
     main(ctx, next);
   }

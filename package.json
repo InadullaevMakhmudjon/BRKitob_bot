@@ -1,9 +1,9 @@
 {
   "name": "br_book_bot",
-  "version": "1.0.0",
+  "version": "1.0.0", 
   "private": true,
   "scripts": {
-    "start": "nodemon index.js --exec babel-node --presets babel-preset-env --plugins babel-plugin-transform-object-rest-spread"
+    "start": "nodemon --inspect=0.0.0.0 --nolazy -L --exec babel-node --presets babel-preset-env --plugins babel-plugin-transform-object-rest-spread index.js"
   },
   "author": "Makhmudjon Inadullaev",
   "license": "ISC",
