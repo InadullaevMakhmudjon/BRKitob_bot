@@ -1,11 +1,31 @@
 import main from '../hears/main';
 import Orders from '../service/orders';
+import aggrement from '../messages/agreement';
+
+const { CHANNEL_ID } = process.env;
+
+const createOrder = (id, { order, user, shopping }) => Orders.create({
+  ...order,
+  userId: user.id,
+  products: shopping.map(({ id: bookId, quantity }) => ({ bookId, quantity })),
+}, id);
+
+const sendMessage = (ctx) => {
+  const message = aggrement(
+    ctx,
+    `${ctx.session.user.first_name} ${ctx.session.user.last_name}`,
+    `${ctx.session.user.phone_number}`,
+    ctx.t('typeCourier'),
+    ctx.session.shopping,
+  );
+  return ctx.telegram.sendMessage(CHANNEL_ID, message);
+};
 
 export default async (ctx, next) => {
-  const req = {
-    userId: ctx.session.user.id,
-    products: ctx.session.shopping.map(({ id: bookId, quantity }) => ({ bookId, quantity })),
-  };
-  await Orders.create(req);
+  ctx.session.order.method = 1;
+  const { provider_payment_charge_id: id } = ctx.message.successful_payment || {};
+  const { message } = await createOrder(id, ctx.session);
+  await ctx.reply(message);
+  await sendMessage(ctx);
   main(ctx, next);
 };
