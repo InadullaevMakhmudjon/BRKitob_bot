@@ -20,6 +20,5 @@ const withoutAddress = {
 };
 
 export default (ctx) => {
-  console.log('Payment on the way');
   ctx.replyWithInvoice(withoutAddress);
 };

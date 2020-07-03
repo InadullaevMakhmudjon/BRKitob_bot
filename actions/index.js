@@ -1,8 +1,12 @@
 import { buttons, isAddedButton } from '../keyboards/count';
 import { COUNT, ADD_BASKET } from './types';
 import books from '../hears/getBasket';
+import payme from './payme';
+import telegram from './telegram';
 
 export default (bot) => {
+  bot.action('telegram', telegram);
+  bot.action('payme', payme);
   bot.on('callback_query', async (ctx, next) => {
     const data = JSON.parse(ctx.callbackQuery.data);
     switch (data.action) {
