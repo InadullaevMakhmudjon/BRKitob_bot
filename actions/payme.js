@@ -11,13 +11,13 @@ const createOrder = ({ order, user, shopping }) => new Promise((resolve) => {
 });
 
 export default async (ctx, next) => {
+  await ctx.deleteMessage(ctx.session.message_id);
   const { message_id, chat: { id: chatId } } = await ctx.replyWithSticker(LOADING);
   await ctx.answerCbQuery();
   if (!ctx.session.order) {
     ctx.session.order = {};
   }
   ctx.session.order.method = 2;
-  await createOrder(ctx.session);
   const { url } = await createOrder(ctx.session);
   await ctx.reply(url);
   await ctx.telegram.deleteMessage(chatId, message_id);
