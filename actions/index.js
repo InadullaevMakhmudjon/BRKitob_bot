@@ -48,7 +48,7 @@ export default (bot) => {
           await ctx.answerCbQuery(ctx.t('added'));
 
           // This sends message to channel about new Gift request
-          // await ctx.telegram.sendMessage(CHANNEL_ID, giftMessage(ctx), { parse_mode: 'Markdown' });
+          await ctx.telegram.sendMessage(CHANNEL_ID, giftMessage(ctx), { parse_mode: 'Markdown' });
 
           const updatedPoint = await users.getGift(ctx.session.user.id, giftId);
           ctx.session.user.point.value = updatedPoint.value;

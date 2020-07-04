@@ -29,6 +29,7 @@ bot.use(async (ctx, next) => {
   next();
 });
 // bot.on('message', (ctx) => ctx.telegram.sendMessage(123, 'asd', { parse_mode }))
+// bot.on('callback_query', (ctx) => ctx.telegram.sendMessage(123, 'asd', { parse_mode: 'M' }))
 actions(bot);
 commands(bot);
 hears(
