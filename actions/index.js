@@ -44,16 +44,24 @@ export default (bot) => {
           break;
         }
         case GET_GIFT: {
-          const giftId = data.id;
-          await ctx.answerCbQuery(ctx.t('added'));
+          try {
+            const giftId = data.id;
+            const updatedPoint = await users.getGift(ctx.session.user.id, giftId);
+            ctx.session.user.point.value = updatedPoint.value;
 
-          // This sends message to channel about new Gift request
-          await ctx.telegram.sendMessage(CHANNEL_ID, giftMessage(ctx), { parse_mode: 'Markdown' });
+            await ctx.answerCbQuery(ctx.t('added'));
 
-          const updatedPoint = await users.getGift(ctx.session.user.id, giftId);
-          ctx.session.user.point.value = updatedPoint.value;
-          await ctx.telegram.deleteMessage(ctx.chat.id, ctx.callbackQuery.message.message_id);
-          profile(ctx, next);
+            await ctx.telegram.deleteMessage(ctx.chat.id, ctx.callbackQuery.message.message_id);
+
+            // This sends message to channel about new Gift request
+            await ctx.telegram.sendMessage(CHANNEL_ID, giftMessage(ctx), { parse_mode: 'Markdown' });
+            profile(ctx, next);
+          } catch (error) {
+            await ctx.answerCbQuery(ctx.t('notEnough'));
+            await ctx.telegram.deleteMessage(ctx.chat.id, ctx.callbackQuery.message.message_id);
+            profile(ctx, next);
+          }
+
 
           break;
         }
