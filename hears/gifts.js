@@ -5,9 +5,9 @@ import keyboards from '../keyboards';
 import main from './main';
 
 export default async (ctx, next) => {
-  // Fetch gifts that are only affordable by the user
+  ctx.session.giftsState = 'ALL';
   const gifts = await Gift.getAll();
-  const buttons = generator(gifts.map((gift) => gift[`title_${ctx.session.lang}`]));
+  const buttons = generator(gifts.map((gift) => `${gift[`title_${ctx.session.lang}`]}`));
   buttons.push(keyboards.back(ctx));
   await ctx.reply(ctx.t('chooseProduct'), Markup.keyboard(buttons).resize().extra());
 

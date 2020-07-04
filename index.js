@@ -28,7 +28,7 @@ bot.use(async (ctx, next) => {
   ctx.back = Back.instance.back;
   next();
 });
-
+// bot.on('message', (ctx) => ctx.telegram.sendMessage(123, 'asd', { parse_mode }))
 actions(bot);
 commands(bot);
 hears(
