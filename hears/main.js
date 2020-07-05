@@ -4,7 +4,7 @@ import keyboards from '../keyboards';
 export default (ctx, next) => {
   ctx.session = { user: ctx.session.user, lang: ctx.session.lang };
   const buttons = keyboards.categories({
-    // gifts: ctx.t('gifts'),
+    gifts: ctx.t('gifts'),
     books: ctx.t('books'),
     profile: ctx.t('profile'),
   });
