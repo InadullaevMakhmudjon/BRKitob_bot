@@ -4,8 +4,11 @@ import aggrement from '../messages/agreement';
 
 const { CHANNEL_ID } = process.env;
 
-const createOrder = (id, { order, user, shopping }) => Orders.create({
+const createOrder = (id, {
+  order, user, shopping, location,
+}) => Orders.create({
   ...order,
+  ...location,
   userId: user.id,
   products: shopping.map(({ id: bookId, quantity }) => ({ bookId, quantity })),
 }, id);
