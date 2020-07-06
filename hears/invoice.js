@@ -17,7 +17,7 @@ const withoutAddress = (prices) => ({
 export default (ctx) => {
   const prices = ctx.session.shopping.map((product) => ({
     label: product[`title_${ctx.session.lang}`],
-    amount: (product.price * product.quantity) * 100,
+    amount: ((product.price * product.quantity) + 15000) * 100, // 15 000 for delivery price
   }));
   ctx.replyWithInvoice(withoutAddress(prices));
 };

@@ -21,6 +21,6 @@ ${
 }
 ~~~~~~~~~~~~~~~~~~~
 ${ctx.t('agreementTotal')}: ${getTotal(products)}
-${ctx.t('agreementDeliveryPrice')}: ${ctx.t('agreementDeliveryMessage')}
+${ctx.t('agreementDeliveryPrice')}: 15 000 ${ctx.t('aggrimentPriceUnit')}
 ${ctx.t('agreementTotalWithout')}: ${getTotal(products)}
 `;

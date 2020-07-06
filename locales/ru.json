@@ -26,5 +26,6 @@
   "aggrementDeliveryPrice": "Цена доставки",
   "aggrementDeliveryMessage": "Оператор свяжется с вами",
   "aggrementAccept": "✅ Подтверждаю",
-  "aggrementReject": "🚫 Отменить"
+  "aggrementReject": "🚫 Отменить",
+  "aggrimentPriceUnit": "сум"
 }

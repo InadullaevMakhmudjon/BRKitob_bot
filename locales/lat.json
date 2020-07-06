@@ -41,5 +41,6 @@
   "agreementDeliveryPrice": "Yetkazib berish",
   "agreementDeliveryMessage": "Operator siz bilan bog'lanadi",
   "agreementAccept": "✅ Tasdiqlayman",
-  "agreementReject": "🚫 Bekor qilish"
+  "agreementReject": "🚫 Bekor qilish",
+  "aggrimentPriceUnit": "so'm"
 }

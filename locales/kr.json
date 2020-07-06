@@ -41,5 +41,6 @@
   "agreementDeliveryPrice": "Йетказиб бериш",
   "agreementDeliveryMessage": "Оператор сиз билан боғланади",
   "agreementAccept": "✅ Тасдиқлайман",
-  "agreementReject": "🚫 Бекор қилиш"
+  "agreementReject": "🚫 Бекор қилиш",
+  "aggrimentPriceUnit": "сўм"
 }
