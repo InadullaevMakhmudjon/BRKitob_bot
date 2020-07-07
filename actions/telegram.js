@@ -1,5 +1,4 @@
 import invoice from '../hears/invoice';
-import main from '../hears/main';
 import { LOADING } from '../utils/stickers';
 
 export default async (ctx, next) => {
@@ -9,7 +8,6 @@ export default async (ctx, next) => {
   if (!ctx.session.order) {
     ctx.session.order = {};
   }
-  await invoice(ctx, 55);
+  await invoice(ctx, next);
   await ctx.telegram.deleteMessage(chatId, message_id);
-  main(ctx, next);
 };

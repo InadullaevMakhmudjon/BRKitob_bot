@@ -8,6 +8,10 @@ import main from './main';
 export default async (ctx, next) => {
   ctx.session.book = null;
 
+  if (ctx.session.order) {
+    ctx.session = { user: ctx.session.user, lang: ctx.session.lang };
+  }
+
   const books = await Book.getAll();
   const buttons = generator(books.map((book) => book[`title_${ctx.session.lang}`]));
   buttons.push(keyboards.main(ctx));
