@@ -1,9 +1,11 @@
+import main from './main';
+
 const token = process.env.PAYMENT_TOKEN;
 
 // for delivery, get by own
-const withoutAddress = (prices) => ({
-  title: 'Biznesrivoj book title',
-  description: 'Biznesrivoj book description',
+const withoutAddress = (prices, title, description) => ({
+  title,
+  description,
   provider_token: token,
   start_parameter: 'brkitob',
   currency: 'UZS',
@@ -14,10 +16,13 @@ const withoutAddress = (prices) => ({
   payload: {},
 });
 
-export default (ctx) => {
+export default async (ctx, next) => {
+  const deliveryPrice = (ctx.session.order && ctx.session.order.typeId === 2 && 15000);
   const prices = ctx.session.shopping.map((product) => ({
     label: product[`title_${ctx.session.lang}`],
-    amount: ((product.price * product.quantity) + 15000) * 100, // 15 000 for delivery price
+    amount: ((product.price * product.quantity) + deliveryPrice) * 100, // 15 000 for delivery price
   }));
-  ctx.replyWithInvoice(withoutAddress(prices));
+
+  await ctx.replyWithInvoice(withoutAddress(prices, ctx.t('invoiceTitle'), ctx.t('invoiceDescription')));
+  await main(ctx, next);
 };

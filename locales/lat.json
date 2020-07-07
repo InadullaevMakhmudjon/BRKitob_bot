@@ -42,5 +42,7 @@
   "agreementDeliveryMessage": "Operator siz bilan bog'lanadi",
   "agreementAccept": "✅ Tasdiqlayman",
   "agreementReject": "🚫 Bekor qilish",
-  "aggrimentPriceUnit": "so'm"
+  "aggrimentPriceUnit": "15 000 so'm",
+  "invoiceTitle": "Biznesrivojdan eng sara biznes kitoblar",
+  "invoiceDescription": "Kitoblar va qo'llanmalar tadbirkorlar uchun biznes-reja tuzish, kompaniyaning marketing rejasini mustahkamlash va eng boshidan to rivojlangan biznes bosqichiga qadar samarali boshqarishga yordam beradi. Shuningdek, kasbiy muvaffaqiyatga erishish, moliya sohasida, muloqotda va o'zgaruvchan iqtisodiyot haqida ko'nikma va bilim olishda qo'l keladi."
 }

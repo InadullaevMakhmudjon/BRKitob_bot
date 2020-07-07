@@ -14,13 +14,13 @@ function getTotal(products) {
 export default (ctx, fullName, phone, dType, products) => `
 ${ctx.t('agreementFullName')}: ${fullName}
 ${ctx.t('agreementPhone')}: ${phone}
-${ctx.t('agreementType')}: ${dType}
+${ctx.t('agreementType')}: ${dType ? ctx.t('typePickUp') : ctx.t('typeCourier')}
 ~~~~~~~~~~~~~~~~~~~
 ${
   products.map((product) => getProduct(product, ctx.session.lang)).join('')
 }
 ~~~~~~~~~~~~~~~~~~~
 ${ctx.t('agreementTotal')}: ${getTotal(products)}
-${ctx.t('agreementDeliveryPrice')}: 15 000 ${ctx.t('aggrimentPriceUnit')}
-${ctx.t('agreementTotalWithout')}: ${getTotal(products)}
+${ctx.t('agreementDeliveryPrice')}: ${dType ? ctx.t('agreementDeliveryMessage') : ctx.t('aggrimentPriceUnit')}
+${ctx.t('agreementTotalWithout')}: ${getTotal(products) + (!dType && 15000)}
 `;

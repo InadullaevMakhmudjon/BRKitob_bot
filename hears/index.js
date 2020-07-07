@@ -42,5 +42,5 @@ export default (customHears) => {
 
   customHears((text) => `${text}`.includes('❌'), deleteProduct);
   customHears('back', (ctx, next) => { ctx.back(ctx, next); });
-  customHears('skip', (ctx, next) => form(ctx, next, 1));
+  // customHears('skip', (ctx, next) => form(ctx, next, 1));
 };
