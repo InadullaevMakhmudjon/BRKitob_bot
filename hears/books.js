@@ -14,8 +14,8 @@ export default async (ctx, next) => {
 
   const data = await Book.getAll();
   const books = data.map((book) => book[`title_${ctx.session.lang}`]);
-  const buttons = generator(books || []);
-  buttons.push(keyboards.main(ctx));
+  const buttons = [keyboards.main(ctx)];
+  buttons.push(...generator(books || []));
   await ctx.reply(ctx.t('chooseProduct'), Markup.keyboard(buttons).oneTime().resize().extra());
 
   // For back event
