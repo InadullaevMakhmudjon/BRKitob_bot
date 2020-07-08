@@ -1,11 +1,14 @@
 import { buttons, isAddedButton } from '../keyboards/count';
-import { COUNT, ADD_BASKET, GET_GIFT } from './types';
+import {
+  COUNT, ADD_BASKET, GET_GIFT, BUY_COURSE,
+} from './types';
 import books from '../hears/getBasket';
 import profile from '../hears/profile';
 import payme from './payme';
 import telegram from './telegram';
 import giftMessage from '../messages/gift';
 import users from '../service/users';
+import { sendCourseInvoice } from '../hears/invoice';
 
 require('dotenv').config();
 
@@ -61,8 +64,10 @@ export default (bot) => {
             await ctx.telegram.deleteMessage(ctx.chat.id, ctx.callbackQuery.message.message_id);
             profile(ctx, next);
           }
-
-
+          break;
+        }
+        case BUY_COURSE: {
+          await sendCourseInvoice(ctx, next);
           break;
         }
         default:

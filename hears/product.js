@@ -9,6 +9,7 @@ import bookCaption from '../messages/caption';
 
 // Store back, To Books
 export default async (ctx, next) => {
+  console.log('a book clicked');
   const { message_id, chat: { id: chatId } } = await ctx.replyWithSticker(LOADING);
   const book = await Book.getByTitle(ctx.session.lang, ctx.match);
   ctx.session.book = book;

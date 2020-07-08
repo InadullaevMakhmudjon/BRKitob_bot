@@ -7,7 +7,7 @@ import clear from './clear';
 import order from './order';
 import delivery from './delivery';
 import dilemma from './dilemma';
-import gifts from './gifts';
+import courses from './courses';
 import myProfile from './myProfile';
 import affordableGifts from './affordableGifts';
 import form from '../listeners/form';
@@ -21,8 +21,8 @@ export default (customHears) => {
   });
 
   // Main
+  customHears('courses', courses);
   customHears('books', books);
-  customHears('gifts', gifts);
   customHears('profile', profile);
 
   // Profile
