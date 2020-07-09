@@ -21,7 +21,7 @@ export default (customHears) => {
   });
 
   // Main
-  customHears('courses', courses);
+  // customHears('courses', courses);
   customHears('books', books);
   customHears('profile', profile);
 
