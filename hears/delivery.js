@@ -1,6 +1,6 @@
 import Markup from 'telegraf/markup';
 import keyboards from '../keyboards';
-import order from './order';
+import { MAIN_BOOKS_SAVAT_ORDER } from '../events/types';
 import form from '../listeners/form';
 
 export default (ctx, next, type) => {
@@ -12,7 +12,7 @@ export default (ctx, next, type) => {
     ctx.reply(ctx.t('byLocationText'), Markup.keyboard(buttons).resize().extra());
 
     // For back event
-    ctx.trace(order);
+    ctx.trace(MAIN_BOOKS_SAVAT_ORDER);
     next();
   }
 };

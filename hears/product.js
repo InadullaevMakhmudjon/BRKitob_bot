@@ -3,9 +3,9 @@ import Book from '../service/books';
 import generator from '../keyboards/generator';
 import keyboards from '../keyboards';
 import { numbers } from '../utils';
-import books from './books';
 import { LOADING } from '../utils/stickers';
 import bookCaption from '../messages/caption';
+import { MAIN_BOOKS } from '../events/types';
 
 // Store back, To Books
 export default async (ctx, next) => {
@@ -25,6 +25,6 @@ export default async (ctx, next) => {
   await ctx.telegram.deleteMessage(chatId, message_id);
 
   // For back event
-  ctx.trace(books);
+  ctx.trace(MAIN_BOOKS);
   next();
 };

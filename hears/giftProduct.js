@@ -1,11 +1,10 @@
 import Gift from '../service/gifts';
 import keyboards from '../keyboards';
-import gifts from './gifts';
-import profile from './profile';
 import { LOADING } from '../utils/stickers';
 import { giftCaption } from '../messages/caption';
 import { AFFORDABLE, ALL } from '../constants/gifts';
 import { GET_GIFT } from '../actions/types';
+import { MAIN_GIFTS, MAIN_PROFILE } from '../events/types';
 
 // Store back, To Books
 export default async (ctx, next) => {
@@ -39,6 +38,6 @@ export default async (ctx, next) => {
   await ctx.telegram.deleteMessage(chatId, message_id);
 
   // For back event
-  ctx.trace(ctx.session.giftsState === ALL ? gifts : profile);
+  ctx.trace(ctx.session.giftsState === ALL ? MAIN_GIFTS : MAIN_PROFILE);
   next();
 };

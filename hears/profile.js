@@ -1,5 +1,5 @@
 import Markup from 'telegraf/markup';
-import main from './main';
+import { MAIN } from '../events/types';
 
 export default (ctx, next) => {
   const buttons = [
@@ -14,6 +14,5 @@ export default (ctx, next) => {
   ctx.reply(ctx.t('choose'), Markup.keyboard(buttons).resize().extra());
 
   // For back event
-  ctx.trace(main);
-  next();
+  ctx.trace(MAIN);
 };

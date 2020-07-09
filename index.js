@@ -6,8 +6,8 @@ import commands from './commands';
 import hears from './hears';
 import customHears, { translate } from './utils/match';
 import listener from './listeners';
-import Back from './events/Back';
 import Hook from './server';
+import action from './events/backs';
 
 require('dotenv').config();
 
@@ -22,10 +22,12 @@ const session = new RedisSession({
 
 bot.use(session.middleware());
 
+const saveSession = (ctx) => session.saveSession(session.options.getSessionKey(ctx), ctx.session);
+
 bot.use(async (ctx, next) => {
   ctx.t = (key) => translate(key, ctx.session.lang || 'kr');
-  ctx.trace = (callBack) => { Back.instance.back = callBack; };
-  ctx.back = Back.instance.back;
+  ctx.trace = (type) => { ctx.session.back = type; saveSession(ctx); };
+  ctx.back = () => action(ctx, next, ctx.session.back).then(() => saveSession(ctx));
   next();
 });
 // bot.on('message', (ctx) => ctx.telegram.sendMessage(123, 'asd', { parse_mode }))
@@ -37,12 +39,12 @@ hears(
   (key, callBack) => bot.on('text', lazy(() => lazyHears(key, callBack))),
 );
 
-bot.hears('check', (ctx) => { console.log(ctx.session); });
+bot.hears('check', (ctx) => { console.log(ctx.session.back); });
 
 listener(bot);
 Hook(bot);
 bot.use((ctx, next) => {
-  next().then(() => session.saveSession(session.options.getSessionKey(ctx), ctx.session))
+  next().then(() => saveSession(ctx))
     .catch((err) => ctx.reply(err.message));
 });
 

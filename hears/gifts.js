@@ -2,7 +2,7 @@ import Markup from 'telegraf/markup';
 import Gift from '../service/gifts';
 import generator from '../keyboards/generator';
 import keyboards from '../keyboards';
-import main from './main';
+import { MAIN } from '../events/types';
 
 export default async (ctx, next) => {
   ctx.session.giftsState = 'ALL';
@@ -12,6 +12,6 @@ export default async (ctx, next) => {
   await ctx.reply(ctx.t('chooseProduct'), Markup.keyboard(buttons).resize().extra());
 
   // For back event
-  ctx.trace(main);
+  ctx.trace(MAIN);
   next();
 };

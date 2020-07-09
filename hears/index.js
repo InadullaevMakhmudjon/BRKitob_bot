@@ -41,6 +41,6 @@ export default (customHears) => {
   customHears(numbers, getBasket);
 
   customHears((text) => `${text}`.includes('❌'), deleteProduct);
-  customHears('back', (ctx, next) => { ctx.back(ctx, next); });
+  customHears('back', (ctx) => ctx.back());
   // customHears('skip', (ctx, next) => form(ctx, next, 1));
 };

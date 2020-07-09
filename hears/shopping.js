@@ -1,6 +1,6 @@
 import Markup from 'telegraf/markup';
 import keyboards from '../keyboards';
-import books from './books';
+import { MAIN_BOOKS } from '../events/types';
 
 // Store back, To Books
 export default async (ctx, next) => {
@@ -13,6 +13,5 @@ export default async (ctx, next) => {
   await ctx.reply(ctx.t('shopping'), Markup.keyboard(buttons).oneTime().resize().extra());
 
   // For back event
-  ctx.trace(books);
-  next();
+  ctx.trace(MAIN_BOOKS);
 };

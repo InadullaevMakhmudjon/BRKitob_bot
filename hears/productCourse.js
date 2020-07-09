@@ -4,10 +4,10 @@ import Course from '../service/courses';
 import generator from '../keyboards/generator';
 import keyboards from '../keyboards';
 import { numbers } from '../utils';
-import courses from './courses';
 import { LOADING } from '../utils/stickers';
 import { courseCaption } from '../messages/caption';
 import { BUY_COURSE } from '../actions/types';
+import { MAIN_COURSES } from '../events/types';
 
 // Store back, To Courses
 export default async (ctx, next) => {
@@ -39,6 +39,6 @@ export default async (ctx, next) => {
   await ctx.telegram.deleteMessage(chatId, message_id);
 
   // For back event
-  ctx.trace(courses);
+  ctx.trace(MAIN_COURSES);
   next();
 };

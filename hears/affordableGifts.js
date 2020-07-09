@@ -2,7 +2,7 @@ import Markup from 'telegraf/markup';
 import Gift from '../service/gifts';
 import generator from '../keyboards/generator';
 import keyboards from '../keyboards';
-import main from './main';
+import { MAIN } from '../events/types';
 import users from '../service/users';
 import { AFFORDABLE } from '../constants/gifts';
 
@@ -16,6 +16,6 @@ export default async (ctx, next) => {
   await ctx.reply(gifts.length ? ctx.t('chooseProduct') : ctx.t('doesNotExist'), Markup.keyboard(buttons).resize().extra());
 
   // For back event
-  ctx.trace(main);
+  ctx.trace(MAIN);
   next();
 };
