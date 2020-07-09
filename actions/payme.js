@@ -3,9 +3,12 @@ import UserCourse from '../service/userCourse';
 import main from '../hears/main';
 import { LOADING } from '../utils/stickers';
 
-const createOrder = ({ order, user, shopping }) => new Promise((resolve) => {
+const createOrder = ({
+  order, user, shopping, location,
+}) => new Promise((resolve) => {
   Orders.create({
     ...order,
+    ...location,
     userId: user.id,
     products: shopping.map(({ id: bookId, quantity }) => ({ bookId, quantity })),
   }).then(resolve);
