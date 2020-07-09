@@ -16,6 +16,15 @@ const withoutAddress = (prices, title, description) => ({
   payload: {},
 });
 
+export const sendCourseInvoice = async (ctx, next) => {
+  const prices = [{
+    label: ctx.session.course[`title_${ctx.session.lang}`],
+    amount: ctx.session.course.price,
+  }];
+  await ctx.replyWithInvoice(withoutAddress(prices, ctx.t('invoiceTitle'), ctx.t('invoiceDescription')));
+  await main(ctx, next);
+};
+
 export default async (ctx, next) => {
   const deliveryPrice = (ctx.session.order && ctx.session.order.typeId === 2 && 15000);
   const prices = ctx.session.shopping.map((product) => ({
