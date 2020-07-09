@@ -9,6 +9,7 @@ import telegram from './telegram';
 import giftMessage from '../messages/gift';
 import users from '../service/users';
 import { sendCourseInvoice } from '../hears/invoice';
+import form from '../listeners/form';
 
 require('dotenv').config();
 
@@ -67,7 +68,8 @@ export default (bot) => {
           break;
         }
         case BUY_COURSE: {
-          await sendCourseInvoice(ctx, next);
+          // await sendCourseInvoice(ctx, next);
+          form(ctx, next, 1);
           break;
         }
         default:
