@@ -32,10 +32,11 @@ function makeData(bot, allCourses, allBooks, allGifts) {
 
 const refreshData = (bot) => new Promise((res, rej) => {
   Promise.all([
-    Course.getAll(),
+    // Course.getAll(),
     Book.getAll(),
     Gift.getAll(),
-  ]).then(([allCourses, allBooks, allGifts]) => {
+  ]).then(([allBooks, allGifts]) => {
+    const allCourses = [];
     const [coursesData, bookData, giftData] = makeData(bot, allCourses, allBooks, allGifts);
     makeHeares(bot, coursesData, productCourse);
     makeHeares(bot, bookData, product);
