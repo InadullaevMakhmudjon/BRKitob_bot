@@ -26,11 +26,16 @@ export const sendCourseInvoice = async (ctx, next) => {
 };
 
 export default async (ctx, next) => {
-  const deliveryPrice = (ctx.session.order && ctx.session.order.typeId === 2 && 15000);
   const prices = ctx.session.shopping.map((product) => ({
     label: product[`title_${ctx.session.lang}`],
-    amount: ((product.price * product.quantity) + deliveryPrice) * 100, // 15 000 for delivery price
+    amount: (product.price * product.quantity) * 100, // 15 000 for delivery price
   }));
+  if (ctx.session.order && ctx.session.order.typeId === 2) {
+    prices.push({
+      label: ctx.t('invoiceDelivery'),
+      amount: 15000 * 100,
+    });
+  }
 
   await ctx.replyWithInvoice(withoutAddress(prices, ctx.t('invoiceTitle'), ctx.t('invoiceDescription')));
   await main(ctx, next);
