@@ -10,7 +10,7 @@ const createOrder = ({
     ...order,
     ...location,
     userId: user.id,
-    products: shopping.map(({ id: bookId, quantity }) => ({ bookId, quantity })),
+    products: shopping.map(({ id: bookId, quantity, price }) => ({ bookId, quantity, price })),
   }).then(resolve);
 });
 

@@ -39,8 +39,6 @@ hears(
   (key, callBack) => bot.on('text', lazy(() => lazyHears(key, callBack))),
 );
 
-bot.hears('check', (ctx) => { console.log(ctx.session.back); });
-
 listener(bot);
 Hook(bot);
 bot.use((ctx, next) => {
